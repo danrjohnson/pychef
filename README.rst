@@ -1,9 +1,6 @@
 PyChef
 ======
 
-.. image:: https://secure.travis-ci.org/coderanger/pychef.svg?branch=master
-    :target: http://travis-ci.org/coderanger/pychef
-
 A Python API for interacting with a Chef server.
 
 Example
@@ -18,6 +15,15 @@ Example
     print n['fqdn']
     n['myapp']['version'] = '1.0'
     n.save()
+
+
+Running Tests
+-------------
+
+```
+python -m unittest discover
+```
+
 
 Further Reading
 ---------------

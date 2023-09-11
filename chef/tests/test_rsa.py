@@ -1,11 +1,11 @@
 import os
 
-import unittest2
+import unittest
 
 from chef.rsa import Key, SSLError
 from chef.tests import TEST_ROOT, skipSlowTest
 
-class RSATestCase(unittest2.TestCase):
+class RSATestCase(unittest.TestCase):
     def test_load_private(self):
         key = Key(os.path.join(TEST_ROOT, 'client.pem'))
         self.assertFalse(key.public)
@@ -16,13 +16,15 @@ class RSATestCase(unittest2.TestCase):
 
     def test_private_export(self):
         key = Key(os.path.join(TEST_ROOT, 'client.pem'))
-        raw = open(os.path.join(TEST_ROOT, 'client.pem'), 'rb').read()
-        self.assertTrue(key.private_export().strip(), raw.strip())
+        with open(os.path.join(TEST_ROOT, 'client.pem'), 'rb') as key_file:
+            raw = key_file.read()
+            self.assertTrue(key.private_export().strip(), raw.strip())
 
     def test_public_export(self):
         key = Key(os.path.join(TEST_ROOT, 'client.pem'))
-        raw = open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb').read()
-        self.assertTrue(key.public_export().strip(), raw.strip())
+        with open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb') as key_file:
+            raw = key_file.read()
+            self.assertTrue(key.public_export().strip(), raw.strip())
 
     def test_private_export_pubkey(self):
         key = Key(os.path.join(TEST_ROOT, 'client_pub.pem'))
@@ -31,8 +33,9 @@ class RSATestCase(unittest2.TestCase):
 
     def test_public_export_pubkey(self):
         key = Key(os.path.join(TEST_ROOT, 'client_pub.pem'))
-        raw = open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb').read()
-        self.assertTrue(key.public_export().strip(), raw.strip())
+        with open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb') as key_file:
+            raw = key_file.read()
+            self.assertTrue(key.public_export().strip(), raw.strip())
 
     def test_encrypt_decrypt(self):
         key = Key(os.path.join(TEST_ROOT, 'client.pem'))
@@ -58,9 +61,11 @@ class RSATestCase(unittest2.TestCase):
         self.assertTrue(key3.public)
 
     def test_load_pem_string(self):
-        key = Key(open(os.path.join(TEST_ROOT, 'client.pem'), 'rb').read())
-        self.assertFalse(key.public)
+        with open(os.path.join(TEST_ROOT, 'client.pem'), 'rb') as key_file:
+            key = Key(key_file.read())
+            self.assertFalse(key.public)
 
     def test_load_public_pem_string(self):
-        key = Key(open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb').read())
-        self.assertTrue(key.public)
+        with open(os.path.join(TEST_ROOT, 'client_pub.pem'), 'rb') as key_file:
+            key = Key(key_file.read())
+            self.assertTrue(key.public)

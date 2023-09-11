@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'PyChef',
-    version = '0.3.0',
+    version = '0.4.0',
     packages = find_packages(),
     author = 'Noah Kantrowitz',
     author_email = 'noah@coderanger.net',
@@ -29,7 +29,5 @@ setup(
         'Programming Language :: Python',
     ],
     zip_safe = False,
-    install_requires = ['six>=1.9.0','requests>=2.7.0'],
-    tests_require = ['unittest2', 'mock'],
-    test_suite = 'unittest2.collector',
+    install_requires = ['six>=1.9.0','requests>=2.7.0', 'six'],
 )

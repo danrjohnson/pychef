@@ -7,7 +7,7 @@ from chef.acl import Acl
 from chef.api import ChefAPI
 from chef.exceptions import *
 
-class ChefQuery(collections.Mapping):
+class ChefQuery(collections.abc.Mapping):
     def __init__(self, obj_class, names, api):
         self.obj_class = obj_class
         self.names = names

@@ -3,8 +3,8 @@ import os
 import random
 from functools import wraps
 
-import mock
-from unittest2 import TestCase, skipUnless
+from unittest import TestCase, skipUnless
+from unittest import mock
 
 from chef.api import ChefAPI
 from chef.exceptions import ChefError

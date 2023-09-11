@@ -4,7 +4,7 @@ import collections
 from chef.base import ChefObject
 from chef.exceptions import ChefError
 
-class NodeAttributes(collections.MutableMapping):
+class NodeAttributes(collections.abc.MutableMapping):
     """A collection of Chef :class:`~chef.Node` attributes.
 
     Attributes can be accessed like a normal python :class:`dict`::
@@ -19,7 +19,7 @@ class NodeAttributes(collections.MutableMapping):
     """
 
     def __init__(self, search_path=[], path=None, write=None):
-        if not isinstance(search_path, collections.Sequence):
+        if not isinstance(search_path, collections.abc.Sequence):
             search_path = [search_path]
         self.search_path = search_path
         self.path = path or ()

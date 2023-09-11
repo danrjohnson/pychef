@@ -32,7 +32,7 @@ class DataBag(six.with_metaclass(DataBagMeta, ChefObject, ChefQuery)):
         return DataBagItem(self, name, api=api)
 
 
-class DataBagItem(six.with_metaclass(DataBagMeta, ChefObject, collections.MutableMapping)):
+class DataBagItem(six.with_metaclass(DataBagMeta, ChefObject, collections.abc.MutableMapping)):
     """A Chef data bag item object.
 
     Data bag items act as normal dicts and can contain arbitrary data.

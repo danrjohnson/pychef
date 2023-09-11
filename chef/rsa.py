@@ -145,7 +145,8 @@ class Key(object):
             # PEM formatted text
             self.raw = fp
         elif isinstance(fp, six.string_types):
-            self.raw = open(fp, 'rb').read()
+            with open(fp, 'rb') as rsa_file:
+                self.raw = rsa_file.read()
         else:
             self.raw = fp.read()
         self._load_key()
